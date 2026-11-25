@@ -60,6 +60,14 @@ public void onHotReloadLoad() {
 
 看 `onDisable` 有没有把线程、端口、任务、监听、命令关干净，再看世界里有没有方块实体、实体、物品 NBT 存着它的类实例。两条都过才行。有世界状态的走 patch，或者把状态数据化。
 
+## 构建
+
+```
+./gradlew build
+```
+
+两个 jar 都在 `build/libs`。默认从远程仓库拉 purpur-api，要离线编译就在 `gradle.properties` 里填本地路径，格式见 `gradle.properties.example`。
+
 ## 配置
 
 ```yaml
