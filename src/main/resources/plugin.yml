@@ -1,0 +1,16 @@
+name: HotReload
+version: '${version}'
+main: cn.mcfhm.hotreload.HotReloadPlugin
+api-version: '26.3'
+authors: [FHM]
+description: 插件热重载，支持不卸载换方法体
+load: STARTUP
+commands:
+  hotreload:
+    description: 热重载管理
+    usage: "/hotreload help"
+    aliases: [hr]
+permissions:
+  hotreload.admin:
+    description: 使用 unload / load / reload / status 命令
+    default: op

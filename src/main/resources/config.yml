@@ -1,0 +1,13 @@
+# 不允许被卸载的插件（大小写不敏感）
+protected-plugins:
+  - HotReload
+
+# 卸载后转到后台复查旧 ClassLoader，不再阻塞主线程
+verify-classloader: true
+
+# true 表示只在没人的时候执行重载，不加 --idle 也一样
+idle-only: false
+idle-timeout: 1800
+
+# 有人在线时，重载前后在聊天栏广播
+announce: true
