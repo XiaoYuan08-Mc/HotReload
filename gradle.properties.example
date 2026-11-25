@@ -1,0 +1,3 @@
+# 指向本地的 purpur-api jar，不配置就走远程仓库坐标
+# purpurApiPath=C:/servers/libraries/org/purpurmc/purpur/purpur-api/26.3.local-SNAPSHOT/purpur-api-26.3.local-SNAPSHOT.jar
+# localLibsPath=C:/servers/libraries

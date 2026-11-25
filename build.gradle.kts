@@ -11,23 +11,28 @@ repositories {
     mavenCentral()
 }
 
-// 直接用测试服里的 26.3 API，彻底离线
-val localApi = file("G:/测试服务端/libraries/org/purpurmc/purpur/purpur-api/26.3.local-SNAPSHOT/purpur-api-26.3.local-SNAPSHOT.jar")
+// 本地 API 路径放在 gradle.properties 里，仓库里不存具体路径
+val localApi = providers.gradleProperty("purpurApiPath").orNull?.let { file(it) }
+val localLibs = providers.gradleProperty("localLibsPath").orNull?.let { file(it) }
 
 dependencies {
-    if (localApi.exists()) {
+    if (localApi != null && localApi.isFile) {
         compileOnly(files(localApi))
-        compileOnly(fileTree("G:/测试服务端/libraries") {
-            include(
-                "net/kyori/**/*.jar",
-                "com/google/guava/**/*.jar",
-                "com/google/code/gson/**/*.jar",
-                "net/md-5/**/*.jar",
-                "org/jetbrains/**/*.jar",
-                "it/unimi/**/*.jar",
-                "com/mojang/**/*.jar"
+        if (localLibs != null && localLibs.isDirectory) {
+            compileOnly(
+                fileTree(localLibs) {
+                    include(
+                        "net/kyori/**/*.jar",
+                        "com/google/guava/**/*.jar",
+                        "com/google/code/gson/**/*.jar",
+                        "net/md-5/**/*.jar",
+                        "org/jetbrains/**/*.jar",
+                        "it/unimi/**/*.jar",
+                        "com/mojang/**/*.jar"
+                    )
+                }
             )
-        })
+        }
     } else {
         compileOnly("org.purpurmc.purpur:purpur-api:26.3.build.2660-stable")
     }
